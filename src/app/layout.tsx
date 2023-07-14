@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter, Nanum_Gothic, Open_Sans } from 'next/font/google';
 import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] });
 const sans = Open_Sans({ subsets: ['latin'] });
 const gothic = Nanum_Gothic({ weight: '700', subsets: ['latin'] });
 
@@ -26,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header>
           <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div className="flex lg:flex-1">
-              <h1 className={gothic.className}>Vicky's blog</h1>
+              <h1 className={gothic.className}>Vicky&apos;s blog</h1>
             </div>
             <div className="flex gap-x-12">
               {navigation.map((item) => (
@@ -40,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <div>
           <div className="fixed inset-x-0 bottom-0 text-center p-3 bg-black text-white ">
-            <p className="text-sm">Don't forget to CODE you DREAM | All Right Reserved.</p>
+            <p className="text-sm">Don&apos;t forget to CODE you DREAM | All Right Reserved.</p>
           </div>
         </div>
       </body>
