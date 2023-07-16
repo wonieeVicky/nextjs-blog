@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 const navigation = [
   { name: 'home', href: '/' },
   { name: 'about', href: '/about' },
-  { name: 'products', href: 'products' },
+  { name: 'posts', href: 'posts' },
   { name: 'contact', href: 'contact' }
 ];
 
-export default function RootLayout({ children, ...props }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={sans.className}>
+      <body className={(sans.className, 'max-w-screen-xl mx-auto mb-16')}>
         <header>
           <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div className="flex lg:flex-1">
@@ -37,10 +37,9 @@ export default function RootLayout({ children, ...props }: { children: React.Rea
           </nav>
         </header>
         {children}
-        <div>
-          <div className="fixed inset-x-0 bottom-0 text-center p-3 bg-black text-white ">
-            <p className="text-sm">Don&apos;t forget to CODE you DREAM | All Right Reserved.</p>
-          </div>
+
+        <div className="fixed inset-x-0 bottom-0 text-center p-3 bg-black text-white ">
+          <p className="text-sm">Don&apos;t forget to CODE you DREAM | All Right Reserved.</p>
         </div>
       </body>
     </html>

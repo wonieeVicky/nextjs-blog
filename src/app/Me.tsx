@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 export default function Me() {
   return (
-    <div className="p-8 text-center">
-      <div className="border w-52 h-52 border-radius overflow-hidden rounded-full mb-3">
+    <div className="p-8 text-center w-full">
+      <div className="border w-52 h-52 border-radius overflow-hidden rounded-full mb-3 inline-block">
         <Image src={meImage} alt="me image" className="relative -top-3" priority />
       </div>
       <h2 className="text-xl font-bold mb-1">Hi! I&apos;m Vicky</h2>
