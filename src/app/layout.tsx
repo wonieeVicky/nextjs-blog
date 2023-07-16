@@ -18,7 +18,7 @@ const navigation = [
   { name: 'contact', href: 'contact' }
 ];
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, ...props }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={sans.className}>
