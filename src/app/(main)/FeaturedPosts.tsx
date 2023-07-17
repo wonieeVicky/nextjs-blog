@@ -19,7 +19,7 @@ export default async function FeaturedPosts({ data }: Props) {
                 <p className="text-xs text-right mb-2">{post.date}</p>
                 <h5 className="mb-1 font-semibold tracking-tight">{post.title}</h5>
                 <p className="mb-3 font-light text-sm">{post.description}</p>
-                <span className="inline-block bg-lime-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">{post.category}</span>
+                <span className="inline-block bg-lime-200 rounded-full px-3 py-1 text-xs font-light text-gray-700">{post.category}</span>
               </div>
             </Link>
           </div>
