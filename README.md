@@ -16,7 +16,7 @@
 - [x] Topbar, Nav
 - [x] Global Me
 - [x] Main - Featured posts
-- [ ] Main - U may like
+- [x] Main - U may like
 - [ ] About
 - [ ] Post - Category
 - [ ] Post - Detail
