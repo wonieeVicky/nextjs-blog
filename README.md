@@ -17,7 +17,7 @@
 - [x] Global Me
 - [x] Main - Featured posts
 - [x] Main - U may like
-- [ ] About
+- [x] About
 - [ ] Post - Category
 - [ ] Post - Detail
 - [ ] Contact - Email object schema validation
