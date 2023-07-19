@@ -18,7 +18,7 @@
 - [x] Main - Featured posts
 - [x] Main - U may like
 - [x] About
-- [ ] Post - Category
+- [x] Post - Category
 - [ ] Post - Detail
 - [ ] Contact - Email object schema validation
 - [ ] Contact - Email sending with Node
