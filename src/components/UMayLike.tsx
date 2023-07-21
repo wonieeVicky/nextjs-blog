@@ -37,7 +37,7 @@ export default function UMayLike({ data }: Props) {
           <div key={idx} className="bg-white rounded-lg shadow text-center m-2">
             <Link href={`/posts/${post.path}`}>
               <Image className="rounded-t-lg" src={`/images/posts/${post.path}.png`} width={800} height={300} alt={`${post.path} image`} />
-              <div className="p-5">
+              <div className="pt-3 pb-4 px-3">
                 <p className="text-xs text-right mb-2">{post.date}</p>
                 <h5 className="mb-1 font-semibold tracking-tight">{post.title}</h5>
                 <p className="mb-3 font-light text-sm">{post.description}</p>
