@@ -1,10 +1,10 @@
-﻿import { getPost, getPostMarkdown, getPosts } from '@/service/posts';
+﻿import { getPost, getPostMarkdown, getPosts, getSiblingPosts } from '@/service/posts';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FcCalendar } from 'react-icons/fc';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import SiblingPosts from '@/components/SiblingPosts';
 
 export const revalidate = 3;
 
@@ -25,12 +25,11 @@ export default async function ProductPage({ params: { path } }: Props) {
   if (!post) {
     redirect('/posts'); // 존재하지 않는 path 입력한 경우 posts redirect
   }
-
+  const siblingPosts = await getSiblingPosts(path);
   const markdown = await getPostMarkdown(path);
 
-  // 서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아와 그 정보를 보여준다.
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="max-h-80 overflow-hidden">
         <Image className="rounded-t-lg" src={`/images/posts/${post.path}.png`} width={1280} height={500} alt={`${post.path} image`} />
       </div>
@@ -44,14 +43,10 @@ export default async function ProductPage({ params: { path } }: Props) {
         <p className="mb-5 font-semibold text-sm">{post.description}</p>
         <div className="w-40 border-2 border-orange-500 mb-5"></div>
         <div className="prose lg:prose-xl">
-          <ReactMarkdown
-            // react-markdown에서 지원해 주지 않는 문법들을 추가로 변형시키는데 사용하는 플러그인 ( table, link 등 )
-            remarkPlugins={[remarkGfm]}
-          >
-            {markdown}
-          </ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
         </div>
       </div>
+      {siblingPosts && <SiblingPosts data={siblingPosts} />}
     </div>
   );
 }
