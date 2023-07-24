@@ -1,6 +1,5 @@
 ﻿'use client';
 
-import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -24,8 +23,7 @@ export default function MarkDownPost({ markdown }: Props) {
           ) : (
             <code {...props}>{children}</code>
           );
-        },
-        img: (image) => <Image src={image.src || ''} alt={image.alt || ''} width={500} height={300} />
+        }
       }}
     >
       {markdown}
