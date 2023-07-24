@@ -12,7 +12,7 @@ type Props = {
 export default function SiblingPosts({ data }: Props) {
   return (
     <>
-      <div className="border flex">
+      <div className="flex">
         {data.map((post, idx) => (
           <div key={idx} className="text-center h-48 overflow-hidden relative">
             <Link href={`/posts/${post.path}`} className={`inline-block h-full overflow-hidden`}>
