@@ -2,9 +2,8 @@
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 import { FcCalendar } from 'react-icons/fc';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import SiblingPosts from '@/components/SiblingPosts';
+import MarkDownPost from '@/components/MarkDownPost';
 
 export const revalidate = 3;
 
@@ -43,7 +42,7 @@ export default async function ProductPage({ params: { path } }: Props) {
         <p className="mb-5 font-semibold text-sm">{post.description}</p>
         <div className="w-40 border-2 border-orange-500 mb-5"></div>
         <div className="prose lg:prose-xl">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+          <MarkDownPost markdown={markdown} />
         </div>
       </div>
       {siblingPosts && <SiblingPosts data={siblingPosts} />}
