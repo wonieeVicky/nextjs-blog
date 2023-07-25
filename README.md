@@ -20,8 +20,8 @@
 - [x] About
 - [x] Post - Category
 - [x] Post - Detail
-- [ ] Contact - Email object schema validation
-- [ ] Contact - Email sending with Node
+- [x] Contact - Email object schema validation
+- [ ] Contact - Email sending with Nodemailer
 
 ## Add a pinch of ideas 🤔
 
