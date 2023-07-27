@@ -16,14 +16,28 @@ export default function SendEmail() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (response.ok) {
+      reset();
+      console.log('Email sent successfully');
+    } else {
+      console.error('Failed to send email');
+    }
   };
+
   return (
     <>
       <div className="flex justify-center">
