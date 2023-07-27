@@ -7,8 +7,8 @@ export async function POST(req: Request) {
   const message = {
     from: requestData.email,
     to: process.env.GMAIL_EMAIL_ADDRESS,
-    subject: requestData.subject,
-    html: `<p>${requestData.message}</p>`
+    subject: `[BLOG] ${requestData.subject}`,
+    html: `<p><h1>${requestData.subject}</h1>${requestData.message}<br /><br />보낸사람: ${requestData.email}</p>`
   };
 
   let transporter = await nodemailer.createTransport({
