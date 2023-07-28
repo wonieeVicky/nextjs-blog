@@ -21,7 +21,7 @@
 - [x] Post - Category
 - [x] Post - Detail
 - [x] Contact - Email object schema validation
-- [ ] Contact - Email sending with Nodemailer
+- [x] Contact - Email sending with Nodemailer
 
 ## Add a pinch of ideas 🤔
 
