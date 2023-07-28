@@ -3,6 +3,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import Toast from './Toast';
+import { useState } from 'react';
 
 const schema = yup
   .object({
@@ -21,6 +23,7 @@ export default function SendEmail() {
   } = useForm({
     resolver: yupResolver(schema)
   });
+  const [status, setStatus] = useState('loading');
 
   const onSubmit = async (data) => {
     const response = await fetch('/api/send-email', {
@@ -32,9 +35,11 @@ export default function SendEmail() {
     });
     if (response.ok) {
       reset();
-      console.log('Email sent successfully');
+      setStatus('success');
+      setTimeout(() => setStatus('loading'), 5000);
     } else {
-      console.error('Failed to send email');
+      setStatus('error');
+      setTimeout(() => setStatus('loading'), 5000);
     }
   };
 
@@ -43,20 +48,40 @@ export default function SendEmail() {
       <div className="flex justify-center">
         <div className="py-4 mt-8 min-w-[50%]">
           <h2 className="text-2xl font-bold mb-10">Or Send me an email📮</h2>
-          <form className="grid grid-cols-1 gap-6 text-left" onSubmit={handleSubmit(onSubmit)}>
+          {status !== 'loading' && <Toast isSuccess={status === 'success'} />}
+          <form
+            className="grid grid-cols-1 gap-6 text-left"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <label className="block">
               <span>Your Email</span>
-              <input className="mt-1 block w-full rounded-md" placeholder="john@example.com" disabled={isSubmitting} {...register('email')} />
+              <input
+                className="mt-1 block w-full rounded-md"
+                placeholder="john@example.com"
+                disabled={isSubmitting}
+                {...register('email')}
+              />
               <p className="text-xs mt-1">{errors.email?.message}</p>
             </label>
             <label className="block">
               <span>Subject</span>
-              <input type="text" className="mt-1 block w-full rounded-md" placeholder="" disabled={isSubmitting} {...register('subject')} />
+              <input
+                type="text"
+                className="mt-1 block w-full rounded-md"
+                placeholder=""
+                disabled={isSubmitting}
+                {...register('subject')}
+              />
               <p className="text-xs mt-1">{errors.subject?.message}</p>
             </label>
             <label className="block">
               <span className="text-gray-700">Message</span>
-              <textarea className="mt-1 block w-full rounded-md" rows={3} disabled={isSubmitting} {...register('message')}></textarea>
+              <textarea
+                className="mt-1 block w-full rounded-md"
+                rows={3}
+                disabled={isSubmitting}
+                {...register('message')}
+              ></textarea>
               <p className="text-xs mt-1">{errors.message?.message}</p>
             </label>
             <button
