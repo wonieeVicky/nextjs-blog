@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Me() {
   return (
     <div className="p-8 text-center w-full">
-      <div className="border w-52 h-52 border-radius overflow-hidden rounded-full mb-3 inline-block">
+      <div className="border w-44 h-44 md:w-52 md:h-52 border-radius overflow-hidden rounded-full mb-3 inline-block">
         <Image
           src={meImage}
           alt="me image"
