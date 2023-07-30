@@ -1,6 +1,14 @@
 ﻿import SendEmail from '@/components/SendEmail';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { SiGithub, SiNotion } from 'react-icons/si';
+
+export function generateMetadata(): Metadata {
+  return {
+    title: `Vicky's blog | Contact`,
+    description: 'Vicky 블로그 Contact 페이지'
+  };
+}
 
 export default function About() {
   return (
@@ -9,7 +17,11 @@ export default function About() {
         <h3 className="text-2xl font-bold my-3">Contact Me</h3>
         <div className="text-sm">hwfongfing@gmail.com</div>
         <div className="flex justify-center my-5 text-2xl hover:text">
-          <Link href="//github.com/wonieeVicky" target="_blank" className="mx-1 transition ease-in-out duration-300 hover:text-orange-600">
+          <Link
+            href="//github.com/wonieeVicky"
+            target="_blank"
+            className="mx-1 transition ease-in-out duration-300 hover:text-orange-600"
+          >
             <SiGithub />
           </Link>
           <Link

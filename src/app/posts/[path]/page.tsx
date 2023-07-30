@@ -1,9 +1,15 @@
-﻿import { getPost, getPostMarkdown, getPosts, getSiblingPosts } from '@/service/posts';
+﻿import {
+  getPost,
+  getPostMarkdown,
+  getPosts,
+  getSiblingPosts
+} from '@/service/posts';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 import { FcCalendar } from 'react-icons/fc';
 import SiblingPosts from '@/components/SiblingPosts';
 import MarkDownPost from '@/components/MarkDownPost';
+import { Metadata } from 'next';
 
 export const revalidate = 3;
 
@@ -13,9 +19,10 @@ type Props = {
   };
 };
 
-export function generateMetadata({ params }: Props) {
+export function generateMetadata({ params }: Props): Metadata {
   return {
-    title: `${params.path} : Vicky's blog`
+    title: `Vicky's blog | ${params.path}`,
+    description: 'Vicky 블로그 Posts 상세 페이지'
   };
 }
 
@@ -30,7 +37,13 @@ export default async function ProductPage({ params: { path } }: Props) {
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="max-h-80 overflow-hidden">
-        <Image className="rounded-t-lg" src={`/images/posts/${post.path}.png`} width={1280} height={500} alt={`${post.path} image`} />
+        <Image
+          className="rounded-t-lg"
+          src={`/images/posts/${post.path}.png`}
+          width={1280}
+          height={500}
+          alt={`${post.path} image`}
+        />
       </div>
       <div className="p-5 bg-slate-50">
         <p className="text-sm text-right text-semibold flex items-center justify-end text-orange-600">
@@ -38,7 +51,9 @@ export default async function ProductPage({ params: { path } }: Props) {
           &nbsp;
           {post.date}
         </p>
-        <h5 className="mb-2 font-semibold text-4xl tracking-tight">{post.title}</h5>
+        <h5 className="mb-2 font-semibold text-4xl tracking-tight">
+          {post.title}
+        </h5>
         <p className="mb-5 font-semibold text-sm">{post.description}</p>
         <div className="w-40 border-2 border-orange-500 mb-5"></div>
         <div className="prose lg:prose-xl">
