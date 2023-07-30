@@ -11,7 +11,7 @@ export default function About() {
   return (
     <main className="flex flex-col items-center justify-between">
       <Me />
-      <div className="w-full bg-yellow-50 text-center p-6 shadow">
+      <div className="w-full bg-slate-100 text-center p-6 shadow">
         <h3 className="text-xl font-semibold my-3">Who am I?</h3>
         <div className="text-sm">
           비즈니스의 가치를 구현하는 프론트엔드 개발자
