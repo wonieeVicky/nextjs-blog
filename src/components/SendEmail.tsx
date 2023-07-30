@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Toast from './Toast';
@@ -14,18 +14,20 @@ const schema = yup
   })
   .required();
 
+type FormValues = yup.InferType<typeof schema>;
+
 export default function SendEmail() {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting }
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: yupResolver(schema)
   });
   const [status, setStatus] = useState('loading');
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const response = await fetch('/api/send-email', {
       method: 'POST',
       headers: {
