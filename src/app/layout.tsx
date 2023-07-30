@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={(sans.className, 'mb-32')}>
-        <header className="sticky top-0 right-0 left-0 bg-white">
+        <header className="sticky top-0 right-0 left-0 bg-white z-10">
           <nav
             className="flex items-center justify-between p-6 lg:px-8 max-w-screen-xl mx-auto "
             aria-label="Global"
