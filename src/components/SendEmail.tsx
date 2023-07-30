@@ -48,7 +48,7 @@ export default function SendEmail() {
   return (
     <>
       <div className="flex justify-center">
-        <div className="py-4 mt-8 min-w-[50%]">
+        <div className="py-4 mt-8 min-w-[100%] md:min-w-[70%] lg:min-w-[50%]">
           <h2 className="text-2xl font-bold mb-10">Or Send me an email📮</h2>
           {status !== 'loading' && <Toast isSuccess={status === 'success'} />}
           <form
