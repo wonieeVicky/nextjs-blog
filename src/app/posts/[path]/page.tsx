@@ -26,7 +26,7 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default async function ProductPage({ params: { path } }: Props) {
+export default async function PostDetailPage({ params: { path } }: Props) {
   const post = await getPost(path);
   if (!post) {
     redirect('/posts'); // 존재하지 않는 path 입력한 경우 posts redirect

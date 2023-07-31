@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   description: 'Vicky 블로그 About 페이지'
 };
 
-export default function About() {
+export default function AboutPage() {
   return (
-    <main className="flex flex-col items-center justify-between">
+    <section className="flex flex-col items-center justify-between">
       <Me />
       <div className="w-full bg-slate-100 text-center p-6 shadow">
         <h3 className="text-xl font-semibold my-3">Who am I?</h3>
@@ -22,10 +22,10 @@ export default function About() {
         <div className="text-sm">
           React, Node, Next.js, Typescript, Javascript, Three.js
         </div>
-        <div className="text-sm">
+        <div className="text-sm mb-3">
           Git, VsCode, IntelliJ, Sourcetree, Webpack
         </div>
       </div>
-    </main>
+    </section>
   );
 }

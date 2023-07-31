@@ -10,9 +10,9 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function About() {
+export default function ContactPage() {
   return (
-    <main className="flex flex-col items-center justify-between">
+    <section className="flex flex-col items-center justify-between">
       <div className="w-full text-center">
         <h3 className="text-2xl font-bold my-3">Contact Me</h3>
         <div className="text-sm">hwfongfing@gmail.com</div>
@@ -34,6 +34,6 @@ export default function About() {
         </div>
         <SendEmail />
       </div>
-    </main>
+    </section>
   );
 }
