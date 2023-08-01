@@ -1,9 +1,9 @@
 import Posts from './(main)/Posts';
-import Me from './Me';
+import Me from '@/components/Me';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <section className="flex flex-col items-center justify-between">
+    <section>
       <Me />
       <Posts />
     </section>
