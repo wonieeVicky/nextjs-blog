@@ -11,16 +11,12 @@ export const metadata: Metadata = {
   description: 'Generated Blog by next app'
 };
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={(sans.className, 'mb-32')}>
+      <body className={(sans.className, 'flex flex-col w-full max-w-screen-2xl mx-auto')}>
         <Header />
-        <main className="max-w-screen-xl mx-auto p-4 md:p-6">{children}</main>
+        <main className="grow">{children}</main>
         <Footer />
       </body>
     </html>
