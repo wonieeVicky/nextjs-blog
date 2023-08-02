@@ -4,7 +4,7 @@ import { promises as fs } from 'fs';
 export type Post = {
   title: string;
   description: string;
-  date: string;
+  date: Date;
   category: string;
   path: string;
   featured: boolean;
@@ -12,8 +12,10 @@ export type Post = {
 
 export async function getPosts(): Promise<Post[]> {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
-  const data = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(data);
+  return await fs
+    .readFile(filePath, 'utf-8')
+    .then<Post[]>(JSON.parse)
+    .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
 }
 
 export async function getPost(path: string): Promise<Post | undefined> {
