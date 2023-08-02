@@ -18,6 +18,10 @@ export async function getPosts(): Promise<Post[]> {
     .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
 }
 
+export async function getFeaturedPosts(): Promise<Post[]> {
+  return getPosts().then((posts) => posts.filter((post) => post.featured));
+}
+
 export async function getPost(path: string): Promise<Post | undefined> {
   const posts = await getPosts();
   return posts.find((post) => post.path === path);
