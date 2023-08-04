@@ -21,6 +21,9 @@ export async function getPosts(): Promise<Post[]> {
 export async function getFeaturedPosts(): Promise<Post[]> {
   return getPosts().then((posts) => posts.filter((post) => post.featured));
 }
+export async function getNonFeaturedPosts(): Promise<Post[]> {
+  return getPosts().then((posts) => posts.filter((post) => !post.featured));
+}
 
 export async function getPost(path: string): Promise<Post | undefined> {
   const posts = await getPosts();
