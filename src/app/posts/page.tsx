@@ -1,6 +1,6 @@
 ﻿import { getPosts } from '@/service/posts';
-import PostList from '@/components/PostList';
 import { Metadata } from 'next';
+import FilterablePosts from '@/components/FilterablePosts';
 
 export const metadata: Metadata = {
   title: `Vicky's Blog | Posts`,
@@ -9,12 +9,7 @@ export const metadata: Metadata = {
 
 export default async function PostPage() {
   const posts = await getPosts();
+  const categories = [...new Set(posts.map((post) => post.category))]; // Set: 카테고리 중복 제거
 
-  return (
-    <>
-      <div className="flex flex-row">
-        <PostList posts={posts} />
-      </div>
-    </>
-  );
+  return <FilterablePosts posts={posts} categories={categories} />;
 }
