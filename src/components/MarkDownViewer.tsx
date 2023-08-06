@@ -1,5 +1,6 @@
 ﻿'use client';
 
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -9,10 +10,10 @@ type Props = {
   content: string;
 };
 
-export default function MarkDownViewer({ content }: Props) {
+export default function MarkdownViewer({ content }: Props) {
   return (
     <ReactMarkdown
-      className="proce lg:prose-lg"
+      className="prose max-w-none"
       remarkPlugins={[remarkGfm]}
       components={{
         code({ node, inline, className, children, ...props }) {
@@ -29,9 +30,20 @@ export default function MarkDownViewer({ content }: Props) {
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
           ) : (
-            <code {...props}>{children}</code>
+            <code className={className} {...props}>
+              {children}
+            </code>
           );
-        }
+        },
+        img: (image) => (
+          <Image
+            className="w-full max-h-60 object-cover"
+            src={image.src || ''}
+            alt={image.alt || ''}
+            width={500}
+            height={350}
+          />
+        )
       }}
     >
       {content}
