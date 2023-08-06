@@ -10,7 +10,12 @@ export type Post = {
   featured: boolean;
 };
 
-export type PostData = Post & { content: string };
+export type PostData = Post & {
+  content: string;
+  next: Post | null;
+  prev: Post | null;
+};
+
 export async function getPosts(): Promise<Post[]> {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   return await fs
@@ -22,22 +27,21 @@ export async function getPosts(): Promise<Post[]> {
 export async function getFeaturedPosts(): Promise<Post[]> {
   return getPosts().then((posts) => posts.filter((post) => post.featured));
 }
+
 export async function getNonFeaturedPosts(): Promise<Post[]> {
   return getPosts().then((posts) => posts.filter((post) => !post.featured));
 }
 
-export async function getSiblingPosts(path: string): Promise<Post[] | undefined> {
-  const posts = await getPosts();
-  const idx = posts.findIndex((post) => post.path === path);
-  const prev = posts[idx - 1] || posts[posts.length - 1];
-  const next = posts[idx + 1] || posts[0];
-  return [prev, next];
-}
-
 export async function getPostData(fileName: string): Promise<PostData> {
   const filePath = path.join(process.cwd(), 'data', 'posts', `${fileName}.md`);
-  const metadata = await getPosts().then((posts) => posts.find((post) => post.path === fileName));
-  if (!metadata) throw new Error(`Post ${fileName} not found`);
+  const posts = await getPosts();
+  const post = posts.find((post) => post.path === fileName);
+
+  if (!post) throw new Error(`Post ${fileName} not found`);
+
+  const index = posts.indexOf(post);
+  const next = index > 0 ? posts[index - 1] : null;
+  const prev = index < posts.length - 1 ? posts[index + 1] : null;
   const content = await fs.readFile(filePath, 'utf-8');
-  return { ...metadata, content };
+  return { ...post, content, next, prev };
 }
