@@ -10,6 +10,7 @@ export type Post = {
   featured: boolean;
 };
 
+export type PostData = Post & { content: string };
 export async function getPosts(): Promise<Post[]> {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   return await fs
@@ -25,11 +26,6 @@ export async function getNonFeaturedPosts(): Promise<Post[]> {
   return getPosts().then((posts) => posts.filter((post) => !post.featured));
 }
 
-export async function getPost(path: string): Promise<Post | undefined> {
-  const posts = await getPosts();
-  return posts.find((post) => post.path === path);
-}
-
 export async function getSiblingPosts(path: string): Promise<Post[] | undefined> {
   const posts = await getPosts();
   const idx = posts.findIndex((post) => post.path === path);
@@ -38,8 +34,10 @@ export async function getSiblingPosts(path: string): Promise<Post[] | undefined>
   return [prev, next];
 }
 
-export async function getPostMarkdown(markdownPath: string): Promise<string> {
-  const filePath = path.join(process.cwd(), 'data/posts', `${markdownPath}.md`);
-  const data = await fs.readFile(filePath, 'utf-8');
-  return data;
+export async function getPostData(fileName: string): Promise<PostData> {
+  const filePath = path.join(process.cwd(), 'data', 'posts', `${fileName}.md`);
+  const metadata = await getPosts().then((posts) => posts.find((post) => post.path === fileName));
+  if (!metadata) throw new Error(`Post ${fileName} not found`);
+  const content = await fs.readFile(filePath, 'utf-8');
+  return { ...metadata, content };
 }
