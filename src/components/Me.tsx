@@ -15,8 +15,8 @@ export default function Me() {
           priority // 먼저 로드 처리
         />
       </div>
-      <h2 className="text-2xl font-bold my-3">Hi! I&apos;m Vicky 👩🏻‍💻</h2>
-      <h3 className="text-sm mb-3">Boundless inspiration in crafting delightful experiences</h3>
+      <h2 className="text-2xl font-bold my-3">Hi! I&apos;m Vicky 🐝</h2>
+      <h3 className="text-sm mb-3">Crafting delightful experiences</h3>
 
       <Link href="/contact">
         <button className="rounded-xl bg-orange-500 py-1 px-3 text-xs font-semibold text-white">
