@@ -1,10 +1,9 @@
-﻿import { getPostData, getPosts, getSiblingPosts } from '@/service/posts';
-import { FcCalendar } from 'react-icons/fc';
+﻿import { getPostData, getPosts } from '@/service/posts';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
-import MarkDownViewer from '@/components/MarkDownViewer';
 import Image from 'next/image';
 import PostContent from '@/components/PostContent';
+import AdjacentPostCard from '@/components/AdjacentPostCard';
 
 export const revalidate = 3;
 
@@ -23,7 +22,7 @@ export function generateMetadata({ params }: Props): Metadata {
 
 export default async function PostPage({ params: { path } }: Props) {
   const post = await getPostData(path);
-  const { title, path: postPath } = post;
+  const { title, path: postPath, next, prev } = post;
 
   if (!title) {
     redirect('/posts'); // 존재하지 않는 path 입력한 경우 posts redirect
@@ -39,6 +38,10 @@ export default async function PostPage({ params: { path } }: Props) {
         height={420}
       />
       <PostContent post={post} />
+      <section className="flex shadow-md">
+        {prev && <AdjacentPostCard post={prev} type="prev" />}
+        {next && <AdjacentPostCard post={next} type="next" />}
+      </section>
     </article>
   );
 }
