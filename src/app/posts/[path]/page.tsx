@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
 import MarkDownViewer from '@/components/MarkDownViewer';
 import Image from 'next/image';
+import PostContent from '@/components/PostContent';
 
 export const revalidate = 3;
 
@@ -21,7 +22,8 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default async function PostPage({ params: { path } }: Props) {
-  const { title, description, date, path: PostPath, content } = await getPostData(path);
+  const post = await getPostData(path);
+  const { title, path: postPath } = post;
 
   if (!title) {
     redirect('/posts'); // 존재하지 않는 path 입력한 경우 posts redirect
@@ -31,21 +33,12 @@ export default async function PostPage({ params: { path } }: Props) {
     <article className="rounded-xl overflow-hidden bg-gray-100 shadow-lg m-4">
       <Image
         className="w-full h-1/5s max-h-[500px]"
-        src={`/images/posts/${PostPath}.png`}
+        src={`/images/posts/${postPath}.png`}
         alt={title}
         width={760}
         height={420}
       />
-      <section className="flex flex-col p-4">
-        <div className="flex items-center self-end text-orange-600">
-          <FcCalendar />
-          <p className="font-semibold ml-2 text-base">{date.toString()}</p>
-        </div>
-        <h1 className="text-3xl font-bold mb-3">{title}</h1>
-        <p className="text-lg font-semibold">{description}</p>
-        <div className="w-40 border-2 border-orange-600 mt-5 mb-8" />
-        <MarkDownViewer content={content} />
-      </section>
+      <PostContent post={post} />
     </article>
   );
 }
