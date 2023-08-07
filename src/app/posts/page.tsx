@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import FilterablePosts from '@/components/FilterablePosts';
 
 export const metadata: Metadata = {
-  title: `Vicky's Blog | Posts`,
-  description: 'Vicky 블로그 Posts 페이지'
+  title: `All Posts`,
+  description: 'Vicky Posts List'
 };
 
 export default async function PostPage() {

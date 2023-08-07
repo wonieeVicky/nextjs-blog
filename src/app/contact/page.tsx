@@ -4,8 +4,8 @@ import { SiGithub, SiLinkedin, SiNotion } from 'react-icons/si';
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Vicky's blog | Contact`,
-    description: 'Vicky 블로그 Contact 페이지'
+    title: `Contact Me`,
+    description: 'Contact Vicky!'
   };
 }
 

@@ -2,8 +2,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Vicky's Blog | About",
-  description: 'Vicky 블로그 About 페이지'
+  title: 'About Me',
+  description: 'Vicky Career & Skills'
 };
 
 const TITLE_CLASS = 'text-2xl font-bold text-gray-800 my-4';
@@ -25,7 +25,8 @@ export default function AboutPage() {
         <p className="text-sm">
           React, Node, Next.js, Typescript, Javascript
           <br />
-          Three.js, Git, VsCode, IntelliJ, Webpack, Sourcetree, Atlassian, Confluence
+          Three.js, Git, VsCode, IntelliJ, Webpack, Sourcetree, Atlassian,
+          Confluence
         </p>
       </section>
     </>

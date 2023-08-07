@@ -13,10 +13,13 @@ type Props = {
   };
 };
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({
+  params: { path }
+}: Props): Promise<Metadata> {
+  const { title, description } = await getPostData(path);
   return {
-    title: `Vicky's blog | ${params.path}`,
-    description: 'Vicky 블로그 Posts 상세 페이지'
+    title,
+    description
   };
 }
 
