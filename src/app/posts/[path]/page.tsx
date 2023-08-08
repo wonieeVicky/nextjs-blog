@@ -1,4 +1,4 @@
-﻿import { getPostData, getPosts } from '@/service/posts';
+﻿import { getFeaturedPosts, getPostData } from '@/service/posts';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -51,7 +51,7 @@ export default async function PostPage({ params: { path } }: Props) {
 
 // 미리 페이지를 만들어두고 싶은 경우 generateStaticParams 함수 사용
 export async function generateStaticParams() {
-  // 모든 제품의 페이지들을 미리 만들어 두도록 설정함(SSG)
-  const posts = await getPosts();
+  // featured Posts 페이지들을 미리 만들어 두도록 설정함(SSG)
+  const posts = await getFeaturedPosts();
   return posts.map(({ path }) => ({ path }));
 }
