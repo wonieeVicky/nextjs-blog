@@ -1,11 +1,13 @@
-import Posts from './(main)/Posts';
-import Me from './Me';
+import Me from '@/components/Me';
+import FeaturedPosts from './(main)/FeaturedPosts';
+import UMayLike from './(main)/UMayLike';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="flex flex-col items-center justify-between">
+    <>
       <Me />
-      <Posts />
-    </main>
+      <FeaturedPosts />
+      <UMayLike />
+    </>
   );
 }

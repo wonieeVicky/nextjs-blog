@@ -1,15 +1,9 @@
-﻿import {
-  getPost,
-  getPostMarkdown,
-  getPosts,
-  getSiblingPosts
-} from '@/service/posts';
+﻿import { getFeaturedPosts, getPostData } from '@/service/posts';
 import { redirect } from 'next/navigation';
-import Image from 'next/image';
-import { FcCalendar } from 'react-icons/fc';
-import SiblingPosts from '@/components/SiblingPosts';
-import MarkDownPost from '@/components/MarkDownPost';
 import { Metadata } from 'next';
+import Image from 'next/image';
+import PostContent from '@/components/PostContent';
+import AdjacentPostCard from '@/components/AdjacentPostCard';
 
 export const revalidate = 3;
 
@@ -19,55 +13,45 @@ type Props = {
   };
 };
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({
+  params: { path }
+}: Props): Promise<Metadata> {
+  const { title, description } = await getPostData(path);
   return {
-    title: `Vicky's blog | ${params.path}`,
-    description: 'Vicky 블로그 Posts 상세 페이지'
+    title,
+    description
   };
 }
 
-export default async function ProductPage({ params: { path } }: Props) {
-  const post = await getPost(path);
-  if (!post) {
+export default async function PostPage({ params: { path } }: Props) {
+  const post = await getPostData(path);
+  const { title, path: postPath, next, prev } = post;
+
+  if (!title) {
     redirect('/posts'); // 존재하지 않는 path 입력한 경우 posts redirect
   }
-  const siblingPosts = await getSiblingPosts(path);
-  const markdown = await getPostMarkdown(path);
 
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
-      <div className="max-h-80 overflow-hidden">
-        <Image
-          className="rounded-t-lg"
-          src={`/images/posts/${post.path}.png`}
-          width={1280}
-          height={500}
-          alt={`${post.path} image`}
-        />
-      </div>
-      <div className="p-5 bg-slate-50">
-        <p className="text-sm text-right text-semibold flex items-center justify-end text-orange-600">
-          <FcCalendar />
-          &nbsp;
-          {post.date}
-        </p>
-        <h5 className="mb-2 font-semibold text-4xl tracking-tight">
-          {post.title}
-        </h5>
-        <p className="mb-5 font-semibold text-sm">{post.description}</p>
-        <div className="w-40 border-2 border-orange-500 mb-5"></div>
-        <div className="prose lg:prose-xl">
-          <MarkDownPost markdown={markdown} />
-        </div>
-      </div>
-      {siblingPosts && <SiblingPosts data={siblingPosts} />}
-    </div>
+    <article className="rounded-xl overflow-hidden bg-gray-100 shadow-lg m-4">
+      <Image
+        className="w-full h-1/5s max-h-[500px]"
+        src={`/images/posts/${postPath}.png`}
+        alt={title}
+        width={760}
+        height={420}
+      />
+      <PostContent post={post} />
+      <section className="flex shadow-md">
+        {prev && <AdjacentPostCard post={prev} type="prev" />}
+        {next && <AdjacentPostCard post={next} type="next" />}
+      </section>
+    </article>
   );
 }
 
 // 미리 페이지를 만들어두고 싶은 경우 generateStaticParams 함수 사용
 export async function generateStaticParams() {
-  // 모든 제품의 페이지들을 미리 만들어 두도록 설정함(SSG)
-  const posts = await getPosts();
+  // featured Posts 페이지들을 미리 만들어 두도록 설정함(SSG)
+  const posts = await getFeaturedPosts();
   return posts.map(({ path }) => ({ path }));
 }
