@@ -16,17 +16,15 @@ export default function AboutPage() {
         <h2 className={`${TITLE_CLASS} mt-0`}>Who am I?</h2>
         <p className="text-sm">비즈니스의 가치를 구현하는 프론트엔드 개발자</p>
         <h2 className={TITLE_CLASS}>Career</h2>
-        <p className="text-sm">
-          UneedComms.Inc (2018 ~ Now)
-          <br />
-          DesignSoft.Inc (2015 ~ 2017)
-        </p>
+        <p className="text-sm">UneedComms.Inc (2018 ~ Now)</p>
         <h2 className={TITLE_CLASS}>Skills</h2>
         <p className="text-sm">
           React, Node, Next.js, Typescript, Javascript
           <br />
-          Three.js, Git, VsCode, IntelliJ, Webpack, Sourcetree, Atlassian,
-          Confluence
+          Three.js, styled-component, Webpack, Vercel Deploy
+          <br />
+          Git, VsCode, IntelliJ, Sourcetree, Atlassian(Bitbucket, Jira,
+          Confluence),
         </p>
       </section>
     </>
