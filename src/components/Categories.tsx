@@ -7,7 +7,9 @@
 export default function Categories({ categories, selected, onClick }: Props) {
   return (
     <section className="text-center p-4">
-      <h2 className="text-lg fotn-bold border-b border-orange-500 mb-2">Cateogory</h2>
+      <h2 className="text-lg fotn-bold border-b border-orange-500 mb-2">
+        Category
+      </h2>
       <ul>
         {categories.map((category) => (
           <li
