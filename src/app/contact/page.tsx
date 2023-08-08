@@ -2,12 +2,10 @@
 import { Metadata } from 'next';
 import { SiGithub, SiLinkedin, SiNotion } from 'react-icons/si';
 
-export function generateMetadata(): Metadata {
-  return {
-    title: `Contact Me`,
-    description: 'Contact Vicky!'
-  };
-}
+export const metadata: Metadata = {
+  title: `Contact Me`,
+  description: 'Contact Vicky!'
+};
 
 const LINKS = [
   {
