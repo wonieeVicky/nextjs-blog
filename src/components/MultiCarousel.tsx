@@ -21,7 +21,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default async function MultiCarousel({ children }: Props) {
+export default function MultiCarousel({ children }: Props) {
   return (
     <Carousel responsive={responsive} itemClass="m-2" infinite autoPlay>
       {children}
